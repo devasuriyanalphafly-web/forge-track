@@ -1,0 +1,821 @@
+/* =========================================================
+   FORGETRACK — DIETS PAGE
+   Page-specific styles only
+   ========================================================= */
+
+.diets-page {
+  min-height: 100vh;
+}
+
+.diets-container {
+  width: min(1000px, calc(100% - 40px));
+
+  margin: 0 auto;
+
+  padding: 34px 0 54px;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.diets-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 24px;
+
+  margin-bottom: 24px;
+}
+
+.diets-eyebrow {
+  margin-bottom: 6px;
+
+  color: var(--primary);
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.diets-title {
+  margin-bottom: 7px;
+
+  font-size: clamp(31px, 4vw, 42px);
+
+  line-height: 1.05;
+
+  letter-spacing: -0.045em;
+}
+
+.diets-subtitle {
+  max-width: 560px;
+
+  color: var(--text-muted);
+
+  font-size: 14px;
+
+  line-height: 1.6;
+}
+
+.diets-header-badge {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 7px;
+
+  padding: 9px 12px;
+
+  border: 1px solid var(--border);
+  border-radius: 999px;
+
+  color: var(--primary);
+
+  background: var(--card);
+
+  font-size: 11px;
+  font-weight: 700;
+
+  box-shadow: var(--shadow);
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.diets-hero {
+  position: relative;
+
+  width: 100%;
+  height: 230px;
+
+  overflow: hidden;
+
+  margin-bottom: 24px;
+
+  border-radius: 23px;
+
+  box-shadow: var(--shadow-lg);
+
+  isolation: isolate;
+}
+
+.diets-hero img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.7s ease;
+}
+
+.diets-hero:hover img {
+  transform: scale(1.025);
+}
+
+.diets-hero-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 1;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(15, 23, 42, 0.75),
+      rgba(15, 23, 42, 0.12) 72%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(15, 23, 42, 0.36),
+      transparent 55%
+    );
+}
+
+.diets-hero-content {
+  position: absolute;
+
+  left: 26px;
+  bottom: 24px;
+
+  z-index: 2;
+
+  max-width: 520px;
+
+  color: white;
+}
+
+.diets-hero-content > span {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color:
+    rgba(255, 255, 255, 0.73);
+
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.diets-hero-content strong {
+  display: block;
+
+  font-family: 'Outfit', sans-serif;
+
+  font-size: 25px;
+
+  line-height: 1.15;
+}
+
+.diets-hero-content p {
+  max-width: 480px;
+
+  margin-top: 7px;
+
+  color:
+    rgba(255, 255, 255, 0.73);
+
+  font-size: 11px;
+}
+
+/* =========================================================
+   TOOLBAR
+   ========================================================= */
+
+.diets-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  margin-bottom: 24px;
+}
+
+.diets-filter-group {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 8px;
+}
+
+.diets-filter-btn {
+  min-height: 38px;
+
+  padding: 0 14px;
+
+  border: 1px solid var(--border);
+  border-radius: 999px;
+
+  color: var(--text);
+
+  background: var(--card);
+
+  font-size: 11px;
+  font-weight: 700;
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.diets-filter-btn:hover {
+  color: var(--primary);
+
+  border-color:
+    rgba(124, 58, 237, 0.22);
+
+  background:
+    rgba(124, 58, 237, 0.06);
+}
+
+.diets-filter-btn-active {
+  color: white !important;
+
+  border-color: transparent !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7c3aed,
+      #9f67ff
+    ) !important;
+
+  box-shadow:
+    0 8px 20px -10px
+    rgba(124, 58, 237, 0.58);
+}
+
+.diets-result-count {
+  flex-shrink: 0;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 6px;
+
+  color: var(--text-muted);
+
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.diets-result-count svg {
+  color: var(--primary);
+}
+
+/* =========================================================
+   GRID
+   ========================================================= */
+
+.diets-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fill,
+      minmax(300px, 1fr)
+    );
+
+  gap: 18px;
+}
+
+.diet-card {
+  position: relative;
+
+  overflow: hidden;
+
+  border: 1px solid var(--border);
+  border-radius: 20px;
+
+  background: var(--card);
+
+  box-shadow: var(--shadow);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.diet-card:hover {
+  border-color:
+    rgba(124, 58, 237, 0.18);
+
+  box-shadow: var(--shadow-lg);
+}
+
+ .diet-card-image {
+  position: relative;
+  width: 100%;
+  height: 205px;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.diet-card-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.4s ease, filter 0.25s ease;
+}
+
+.diet-card:hover .diet-card-image img { transform: scale(1.045); }
+
+.diet-card-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15,23,42,0.06) 24%, rgba(15,23,42,0.76) 100%);
+  pointer-events: none;
+}
+
+.diet-card-icon {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,0.28);
+  border-radius: 12px;
+  color: white;
+  background: rgba(15,23,42,0.52);
+  box-shadow: 0 10px 24px rgba(15,23,42,0.2);
+  backdrop-filter: blur(10px);
+}
+
+.diet-goal {
+  position: absolute;
+  top: 13px;
+  left: 13px;
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border: 1px solid rgba(255,255,255,0.24);
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  backdrop-filter: blur(10px);
+}
+
+.diet-goal-weight_loss, .diet-goal-fat_loss { color:#047857; background:rgba(236,253,245,.94); }
+.diet-goal-weight_gain, .diet-goal-muscle_gain { color:#b45309; background:rgba(255,251,235,.94); }
+.diet-goal-maintenance { color:#1d4ed8; background:rgba(239,246,255,.94); }
+.diet-goal-recomposition { color:#7c3aed; background:rgba(245,243,255,.94); }
+.diet-goal-performance { color:#be123c; background:rgba(255,241,242,.94); }
+
+.diet-card-image-title {
+  position: absolute;
+  left: 15px;
+  right: 66px;
+  bottom: 15px;
+  color: white;
+}
+
+.diet-card-image-title span {
+  display:block;
+  margin-bottom:2px;
+  color:rgba(255,255,255,.76);
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+.diet-card-image-title strong {
+  display:block;
+  font-family:'Outfit',sans-serif;
+  font-size:20px;
+  line-height:1.15;
+  letter-spacing:-.03em;
+}
+
+/* =========================================================
+   CARD CONTENT
+   ========================================================= */
+
+.diet-card-content {
+  position: relative;
+
+  z-index: 1;
+
+  padding: 17px 18px 0;
+  margin-bottom: 16px;
+}
+
+.diet-card-content h3 {
+  margin-bottom: 7px;
+
+  font-size: 20px;
+
+  letter-spacing: -0.03em;
+}
+
+.diet-description {
+  min-height: 63px;
+
+  color: var(--text-muted);
+
+  font-size: 12px;
+
+  line-height: 1.6;
+}
+
+/* =========================================================
+   MACROS
+   ========================================================= */
+
+.diet-macros {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 9px;
+
+  margin: 0 18px 18px;
+}
+
+.diet-macro {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 10px;
+
+  border: 1px solid var(--border);
+  border-radius: 12px;
+
+  background: var(--bg);
+}
+
+.diet-macro-icon {
+  width: 33px;
+  height: 33px;
+
+  flex-shrink: 0;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 9px;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--macro-color) 10%,
+      transparent
+    );
+
+  color: var(--macro-color);
+}
+
+.diet-macro > div:last-child {
+  min-width: 0;
+}
+
+.diet-macro span {
+  display: block;
+
+  color: var(--text-muted);
+
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.diet-macro strong {
+  display: block;
+
+  margin-top: 1px;
+
+  color: var(--text);
+
+  font-family: 'Outfit', sans-serif;
+
+  font-size: 15px;
+}
+
+.diet-macro-calories {
+  --macro-color: #f59e0b;
+}
+
+.diet-macro-protein {
+  --macro-color: #ef4444;
+}
+
+.diet-macro-carbs {
+  --macro-color: #d97706;
+}
+
+.diet-macro-fat {
+  --macro-color: #3b82f6;
+}
+
+/* =========================================================
+   CARD FOOTER
+   ========================================================= */
+
+.diet-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin: 0 18px 18px;
+  padding-top: 13px;
+
+  border-top:
+    1px solid var(--border);
+}
+
+.diet-card-footer > div {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 6px;
+
+  color: var(--text-muted);
+
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.diet-card-footer svg {
+  color: var(--primary);
+}
+
+.diet-plan-type {
+  max-width: 150px;
+
+  overflow: hidden;
+
+  color: var(--text-muted);
+
+  font-size: 9px;
+  font-weight: 700;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   LOADING / EMPTY
+   ========================================================= */
+
+.diets-loading,
+.diets-empty {
+  min-height: 260px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  padding: 40px 20px;
+
+  border: 1px solid var(--border);
+  border-radius: 20px;
+
+  color: var(--text-muted);
+
+  background: var(--card);
+
+  text-align: center;
+
+  box-shadow: var(--shadow);
+}
+
+.diets-loader {
+  width: 40px;
+  height: 40px;
+
+  border: 4px solid
+    rgba(124, 58, 237, 0.13);
+
+  border-top-color: var(--primary);
+
+  border-radius: 50%;
+
+  animation:
+    diets-spin 0.8s linear infinite;
+}
+
+@keyframes diets-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.diets-loading p {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.diets-empty-icon {
+  width: 52px;
+  height: 52px;
+
+  display: grid;
+  place-items: center;
+
+  margin-bottom: 2px;
+
+  border-radius: 15px;
+
+  color: var(--primary);
+
+  background:
+    rgba(124, 58, 237, 0.08);
+}
+
+.diets-empty h3 {
+  color: var(--text);
+
+  font-size: 16px;
+}
+
+.diets-empty p {
+  max-width: 380px;
+
+  font-size: 12px;
+}
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+[data-theme='dark'] .diet-card-image-overlay {
+  background: linear-gradient(180deg, rgba(2,6,23,.1) 20%, rgba(2,6,23,.82) 100%);
+}
+
+[data-theme='dark']
+.diet-card,
+[data-theme='dark']
+.diets-loading,
+[data-theme='dark']
+.diets-empty,
+[data-theme='dark']
+.diets-header-badge {
+  border-color:
+    rgba(148, 163, 184, 0.12);
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 820px) {
+  .diets-container {
+    width:
+      min(
+        100% - 28px,
+        1000px
+      );
+
+    padding:
+      26px 0 50px;
+  }
+
+  .diets-header {
+    align-items: flex-start;
+  }
+
+  .diets-toolbar {
+    align-items: flex-start;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .diets-container {
+    width:
+      min(
+        100% - 24px,
+        1000px
+      );
+
+    padding:
+      22px 0 104px;
+  }
+
+  .diets-header {
+    flex-direction: column;
+  }
+
+  .diets-header-badge {
+    display: none;
+  }
+
+  .diets-title {
+    font-size: 30px;
+  }
+
+  .diets-hero {
+    height: 210px;
+
+    border-radius: 19px;
+  }
+
+  .diets-hero-content {
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+  }
+
+  .diets-hero-content strong {
+    font-size: 21px;
+  }
+
+  .diets-toolbar {
+    flex-direction: column;
+  }
+
+  .diets-filter-group {
+    width: 100%;
+  }
+
+  .diets-filter-btn {
+    flex: 1;
+
+    min-width: calc(50% - 8px);
+  }
+
+  .diets-result-count {
+    align-self: flex-end;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+  .diets-container {
+    width:
+      min(
+        100% - 18px,
+        1000px
+      );
+  }
+
+  .diets-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .diet-card-image { height: 185px; }
+
+  .diet-card-content { padding: 15px 15px 0; }
+
+  .diet-macros,
+  .diet-card-footer {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  .diet-macros {
+    gap: 7px;
+  }
+
+  .diet-macro {
+    padding: 9px;
+  }
+
+  .diets-filter-btn {
+    min-width:
+      calc(50% - 5px);
+
+    padding:
+      0 10px;
+  }
+
+  .diets-hero-content p {
+    display: none;
+  }
+}

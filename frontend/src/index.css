@@ -1,0 +1,255 @@
+/* =========================================================
+   FORGETRACK — GLOBAL STYLES
+   ========================================================= */
+
+:root {
+  --bg: #f8fafc;
+  --bg-gradient:
+    radial-gradient(
+      at 0% 0%,
+      rgba(124, 58, 237, 0.08) 0,
+      transparent 50%
+    ),
+    radial-gradient(
+      at 100% 0%,
+      rgba(236, 72, 153, 0.07) 0,
+      transparent 50%
+    ),
+    radial-gradient(
+      at 100% 100%,
+      rgba(16, 185, 129, 0.07) 0,
+      transparent 50%
+    ),
+    linear-gradient(
+      135deg,
+      #f0f9ff 0%,
+      #fdf4ff 45%,
+      #f0fdfa 100%
+    );
+
+  --card: rgba(255, 255, 255, 0.72);
+  --card-solid: #ffffff;
+
+  --text: #0f172a;
+  --text-muted: #64748b;
+
+  --primary: #7c3aed;
+  --primary-light: #a78bfa;
+  --primary-dark: #5b21b6;
+
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+
+  --border: rgba(148, 163, 184, 0.22);
+
+  --shadow:
+    0 10px 40px -12px rgba(0, 0, 0, 0.08);
+
+  --shadow-lg:
+    0 20px 50px -15px rgba(124, 58, 237, 0.18);
+
+  --radius: 20px;
+  --radius-sm: 14px;
+}
+
+[data-theme='dark'] {
+  --bg: #0b1120;
+
+  --bg-gradient:
+    radial-gradient(
+      at 0% 0%,
+      rgba(124, 58, 237, 0.15) 0,
+      transparent 50%
+    ),
+    radial-gradient(
+      at 100% 0%,
+      rgba(167, 139, 250, 0.1) 0,
+      transparent 45%
+    ),
+    linear-gradient(
+      135deg,
+      #0f172a 0%,
+      #1e1b4b 45%,
+      #0f172a 100%
+    );
+
+  --card: rgba(30, 41, 59, 0.65);
+  --card-solid: #1e293b;
+
+  --text: #f1f5f9;
+  --text-muted: #94a3b8;
+
+  --primary: #a78bfa;
+  --primary-light: #c4b5fd;
+  --primary-dark: #7c3aed;
+
+  --success: #34d399;
+  --warning: #fbbf24;
+  --danger: #f87171;
+
+  --border: rgba(148, 163, 184, 0.12);
+
+  --shadow:
+    0 10px 40px -10px rgba(0, 0, 0, 0.45);
+
+  --shadow-lg:
+    0 20px 50px -15px rgba(167, 139, 250, 0.22);
+}
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+
+  font-family:
+    'Inter',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+
+  color: var(--text);
+
+  line-height: 1.5;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+img,
+svg {
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.brand {
+  font-family: 'Outfit', sans-serif;
+
+  font-weight: 700;
+
+  letter-spacing: -0.025em;
+}
+
+.display-font {
+  font-family: 'Playfair Display', serif;
+}
+
+.gradient-text {
+  background:
+    linear-gradient(
+      135deg,
+      #7c3aed,
+      #ec4899
+    );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* =========================================================
+   GLOBAL FORM FOCUS
+   ========================================================= */
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+
+  border-color: var(--primary) !important;
+
+  box-shadow:
+    0 0 0 3px rgba(124, 58, 237, 0.12);
+}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-light);
+}
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
