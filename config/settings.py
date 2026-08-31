@@ -1,8 +1,7 @@
+import os
 from pathlib import Path
 from datetime import timedelta
-import os
-
-from dotenv import load_dotenv
+from dotenv import load_dotenv, dotenv_values
 
 
 # =========================================================
@@ -10,9 +9,24 @@ from dotenv import load_dotenv
 # =========================================================
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+ENV_PATH = BASE_DIR / ".env"
 
-load_dotenv(BASE_DIR / ".env", override=True)
+load_dotenv(ENV_PATH, override=True)
 
+ENV_FILE = dotenv_values(ENV_PATH)
+
+
+def env(key, default=None):
+    """
+    Read environment variable first.
+    If unavailable, read from local .env file.
+    """
+    value = os.getenv(key)
+
+    if value is not None:
+        return value
+
+    return ENV_FILE.get(key, default)
 
 # =========================================================
 # CORE SETTINGS
@@ -79,12 +93,14 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
 
     "django.middleware.security.SecurityMiddleware",
+
+    # WhiteNoise for production static files
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
-
     "django.contrib.auth.middleware.AuthenticationMiddleware",
-
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
@@ -114,7 +130,6 @@ TEMPLATES = [
             "context_processors": [
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
-
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
             ],
@@ -138,29 +153,20 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
 
-        "NAME": os.getenv("DB_NAME"),
-        "USER": os.getenv("DB_USER"),
-        "PASSWORD": os.getenv("DB_PASSWORD"),
-
-        "HOST": os.getenv(
-            "DB_HOST",
-            "127.0.0.1"
-        ),
-
-        "PORT": os.getenv(
-            "DB_PORT",
-            "3306"
-        ),
+        "NAME": env("DB_NAME"),
+        "USER": env("DB_USER"),
+        "PASSWORD": env("DB_PASSWORD"),
+        "HOST": env("DB_HOST"),
+        "PORT": env("DB_PORT", "3306"),
 
         "OPTIONS": {
             "charset": "utf8mb4",
+            "ssl_mode": "REQUIRED",
         },
 
-        # Reuse database connections
         "CONN_MAX_AGE": 60,
     }
 }
-
 
 # =========================================================
 # PASSWORD VALIDATION
@@ -172,19 +178,16 @@ AUTH_PASSWORD_VALIDATORS = [
             "django.contrib.auth.password_validation."
             "UserAttributeSimilarityValidator"
     },
-
     {
         "NAME":
             "django.contrib.auth.password_validation."
             "MinimumLengthValidator"
     },
-
     {
         "NAME":
             "django.contrib.auth.password_validation."
             "CommonPasswordValidator"
     },
-
     {
         "NAME":
             "django.contrib.auth.password_validation."
@@ -212,7 +215,9 @@ USE_TZ = True
 # STATIC + MEDIA
 # =========================================================
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 MEDIA_URL = "/media/"
 
@@ -273,6 +278,7 @@ REST_FRAMEWORK = {
     },
 }
 
+
 # =========================================================
 # CORS
 # =========================================================
@@ -320,6 +326,7 @@ SIMPLE_JWT = {
         ("Bearer",),
 }
 
+
 # =========================================================
 # EMAIL
 # =========================================================
@@ -345,7 +352,7 @@ EMAIL_USE_TLS = (
     os.getenv(
         "EMAIL_USE_TLS",
         "True"
-    ).lower()
+    ).strip().lower()
     == "true"
 )
 
@@ -360,4 +367,14 @@ EMAIL_HOST_PASSWORD = os.getenv(
 DEFAULT_FROM_EMAIL = os.getenv(
     "DEFAULT_FROM_EMAIL",
     EMAIL_HOST_USER
+)
+
+
+# =========================================================
+# PRODUCTION / HTTPS
+# =========================================================
+
+SECURE_PROXY_SSL_HEADER = (
+    "HTTP_X_FORWARDED_PROTO",
+    "https"
 )
