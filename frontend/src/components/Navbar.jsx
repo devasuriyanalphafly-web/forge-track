@@ -1,4 +1,12 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import {
+  useEffect,
+  useState,
+} from 'react';
+
+import {
+  useLocation,
+  useNavigate,
+} from 'react-router-dom';
 
 import {
   Dumbbell,
@@ -27,10 +35,41 @@ function Navbar({
   const navigate = useNavigate();
   const location = useLocation();
 
+  const [scrolled, setScrolled] =
+    useState(false);
+
   const {
     theme,
     toggleTheme,
   } = useTheme();
+
+
+  /* =========================
+      NAVBAR SCROLL EFFECT
+  ========================= */
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(
+        window.scrollY > 20
+      );
+    };
+
+    // Check initial position
+    handleScroll();
+
+    window.addEventListener(
+      'scroll',
+      handleScroll
+    );
+
+    return () => {
+      window.removeEventListener(
+        'scroll',
+        handleScroll
+      );
+    };
+  }, []);
 
 
   const links = [
@@ -86,7 +125,9 @@ function Navbar({
 
   const isActive = (path) => {
     if (path === '/') {
-      return location.pathname === '/';
+      return (
+        location.pathname === '/'
+      );
     }
 
     return (
@@ -119,7 +160,15 @@ function Navbar({
 
 
   return (
-    <header className="navbar">
+    <header
+      className={
+        `navbar ${
+          scrolled
+            ? 'navbar-scrolled'
+            : 'navbar-transparent'
+        }`
+      }
+    >
 
       <div className="navbar-inner">
 

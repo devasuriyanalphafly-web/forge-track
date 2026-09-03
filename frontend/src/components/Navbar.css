@@ -464,3 +464,57 @@
     display: none;
   }
 }
+
+/* ========================================
+   NAVBAR SCROLL STATE
+======================================== */
+
+.navbar {
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease,
+    backdrop-filter 0.3s ease,
+    border-color 0.3s ease;
+}
+
+
+/* Page top */
+
+.navbar-transparent {
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+
+/* After scrolling */
+
+.navbar-scrolled {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  box-shadow:
+    0 8px 30px
+    rgba(15, 23, 42, 0.08);
+
+  border-bottom:
+    1px solid
+    rgba(15, 23, 42, 0.08);
+}
+
+
+/* Dark theme */
+
+.dark .navbar-scrolled {
+  background:
+    rgba(15, 23, 42, 0.96);
+
+  border-bottom:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    0 8px 30px
+    rgba(0, 0, 0, 0.25);
+}
