@@ -161,15 +161,13 @@ function Navbar({
 
   return (
     <header
-      className={
-        `navbar ${
-          scrolled
-            ? 'navbar-scrolled'
-            : 'navbar-transparent'
-        }`
-      }
-    >
-
+      className={`
+          navbar
+          ${scrolled ? 'navbar-scrolled' : 'navbar-transparent'}
+          ${theme === 'dark' ? 'navbar-dark' : 'navbar-light'}
+        `}
+      >
+    
       <div className="navbar-inner">
 
 
